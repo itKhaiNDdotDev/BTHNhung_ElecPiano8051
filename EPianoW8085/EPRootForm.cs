@@ -24,6 +24,7 @@ namespace EPianoW8085
             _sPort.PortName = "COM5";
             _sPort.BaudRate = 9600;
             _sPort.Open();
+            //_sPort.Bytes
         }
 
         //public void configPort()
@@ -139,6 +140,7 @@ namespace EPianoW8085
                 if (((i % 7) == 0 || (i % 7) == 1 || (i % 7) == 3 || (i % 7) == 4 || (i % 7) == 5) && (i != n - 1))
                 {
                     Label pt = new Label();
+                    pt.BorderStyle = BorderStyle.Fixed3D;
                     pt.BackColor = Color.Black;
                     pt.Width = Wb;
                     pt.Height = Hb;
@@ -151,12 +153,14 @@ namespace EPianoW8085
                 }
 
                 listLbls.Add(p);
+                listLbls[i].BorderStyle = BorderStyle.Fixed3D;
                 listLbls[i].BackColor = Color.White;
                 listLbls[i].Width = Ww;
                 listLbls[i].Height = Hw;
                 listLbls[i].Text = keyToId.Keys.ElementAt(i).ToString();
+                listLbls[i].Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
                 listLbls[i].TextAlign = ContentAlignment.BottomCenter;
-                listLbls[i].ForeColor = Color.DarkBlue; keyToId.Keys.ElementAt(i).ToString();
+                listLbls[i].ForeColor = Color.DarkBlue;
                 //if (i == 4)
                 //    listLbls[i].Text = ",";
                 //if (i == 5)
@@ -169,8 +173,6 @@ namespace EPianoW8085
                 //    listLbls[i].Text = "`~";
                 //if (i == 27)
                 //    listLbls[i].Text = "=";
-                listLbls[i].TextAlign = ContentAlignment.BottomCenter;
-                listLbls[i].ForeColor = Color.DarkBlue;
                 //listLbls[i].  CHINH FONT CHU;
                 if (i == 0)
                     listLbls[i].Location = new Point(panel1.Location.X + 2, panel1.Location.Y + Yp);
@@ -182,6 +184,7 @@ namespace EPianoW8085
             for (int i = 0; i < n/7*5; i++)
             {
                 listLblBNs[i].Text = keyToIdBN.Keys.ElementAt(i).ToString();
+                listLblBNs[i].Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
                 //if (i == 3)
                 //    listLblBNs[i].Text = ".";
                 //if (i == 8)
@@ -195,6 +198,41 @@ namespace EPianoW8085
                 listLblBNs[i].TextAlign = ContentAlignment.BottomCenter;
                 listLblBNs[i].ForeColor = Color.Yellow;
             }
+
+            //Them cac ComboBox setup cac thong so cho cong COM
+            //ComboBox cbCOM = new ComboBox();
+            //ComboBox cbBR = new ComboBox();
+            //cbCOM.ForeColor = Color.DarkGreen;
+            //cbCOM.BackColor = Color.LightPink;
+            //cbBR.ForeColor = Color.DarkGreen;
+            //cbBR.BackColor = Color.LightPink;
+            //string[] itemsCOM =
+            //{
+            //    "COM1",
+            //    "COM2",
+            //    "COM3",
+            //    "COM4",
+            //    "COM5",
+            //    "COM6",
+            //    "COM7",
+            //    "COM8",
+            //    "COM9"
+            //};
+            //string[] itemsBR =
+            //{
+            //    "1200",
+            //    "2400",
+            //    "4800",
+            //    "9600",
+            //    "14400"
+            //};
+            //cbCOM.Items.AddRange(itemsCOM);
+            //cbBR.Items.AddRange(itemsBR);
+            //cbCOM.Location = new Point(210, 3);
+            //panel1.Controls.Add(cbCOM);
+            //panel1.Controls.Add(cbBR);
+            //TAM THAY BANG LABEL
+
             panel1.AutoSize = true;
 
             // Them cac label de de chu thich cho ban phim
@@ -255,16 +293,21 @@ namespace EPianoW8085
                 {
                     listLblBNs[i].BackColor = Color.LightSlateGray;
                     if(i == 11)
-                        sData = "1";
+                        sData = "2";
                     else if (i == 12)
-                        sData = "6";/////////CAN CHINH SUA
+                        sData = "5";/////////CAN CHINH SUA
                     else if (i == 13)
-                        sData = "8";
+                        sData = "7";
                     else if (i == 14)
-                        sData = "0";
+                        sData = "9";
                     else
                         sData = keyToIdBN.Keys.ElementAt(i).ToString();
-                    _sPort.Write(sData);
+                    char[] charData = sData.ToCharArray();      ///GUI BYTE CHAR[]
+                    _sPort.Write(charData, 0, 1);
+                    //char c0 = charData[0];
+                    //char c1 = charData[1];
+                    //string rData = _sPort.ReadLine();
+                    //MessageBox.Show("DATA:   " + rData);
                 }
             }
 
@@ -288,5 +331,19 @@ namespace EPianoW8085
                 }
             }
         }
+
+        //private void sCOM_SelectedValueChanged(object sender, EventArgs e)
+        //{
+        //    //ComboBox cb = sender as ComboBox;
+        //    //_sPort.PortName = cb.SelectedValue.ToString();
+        //    //MessageBox.Show(_sPort.PortName);
+        //}
+
+        //private void sBR_SelectedValueChanged(object sender, EventArgs e)
+        //{
+        //    //ComboBox cb = sender as ComboBox;
+        //    //_sPort.BaudRate = Convert.ToInt32(cb.SelectedValue);
+        //    //MessageBox.Show(_sPort.BaudRate.ToString());
+        //}
     }
 }

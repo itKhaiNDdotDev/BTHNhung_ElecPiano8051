@@ -41,15 +41,14 @@ code unsigned int note_table[]={
     0xf3,0xf4,        // A5
     0xf4,0x11,        // A#5
     0xf5,0x2e,        // B5
-	
 };
-unsigned char song[]={ //Danh sách các note của đoạn nhạc
-	10, 10, 0, 0, 4, 4, 0,
-	10, 10, 0, 0, 4, 4, 0,
-	 0,  0, 4, 8, 10, 10,
-	 0,  0, 4, 8, 10, 10
+unsigned char song[]={ //Danh sÃ¡ch cÃ¡c note cá»§a Ä‘oáº¡n nháº¡c
+	10,10,0,0,4,4,0,
+	10,10,0,0,4,4,0,
+	0,0,4,8,10,10,
+	0,0,4,8,10,10
 };
-void init(); //Hàm thiết lập chế độ hoạt động 1 của timer0
+void init(); //HÃ m thiáº¿t láº­p cháº¿ Ä‘á»™ hoáº¡t Ä‘á»™ng 1 cá»§a timer0
 void delay(unsigned int time);
 
 //Dinh nghia mot so chan de dieu khien den LCD
@@ -72,7 +71,7 @@ void main()
 	SCON = 0x50; 			/* uart in mode 1 (8 bit), REN=1 */
   	TMOD = TMOD | 0x20 ; 	/* Timer 1 in mode 2 */
   	TH1 = 0xFD; 			/* 9600 Bds at 11.0592MHz */
- 	  TL1 = 0xFD; 			/* 9600 Bds at 11.0592MHz */
+ 	TL1 = 0xFD; 			/* 9600 Bds at 11.0592MHz */
   	ES = 1; 				/* Enable serial interrupt*/
   	EA = 1; 				/* Enable global interrupt */
   	TR1 = 1;
@@ -81,7 +80,7 @@ void main()
 	LCD_init();
 	
 	note_index=0;
-		for(i=0;i<72;i++){ //Chơi một đoạn nhạc theo danh sách các note ở mảng song[]
+		for(i=0;i<26;i++){ //ChÆ¡i má»™t Ä‘oáº¡n nháº¡c theo danh sÃ¡ch cÃ¡c note á»Ÿ máº£ng song[]
 			note_index = song[i];		
 			TH0=note_table[note_index];
 			TL0=note_table[note_index+1];			
@@ -94,11 +93,11 @@ void main()
 		}
 		delay(50000);
 
-	while(1){ //vòng lặp vô hạn xử lý sự kiện nhấn phím
+	while(1){ //vÃ²ng láº·p vÃ´ háº¡n xá»­ lÃ½ sá»± kiá»‡n nháº¥n phÃ­m
 	note_index=0;
 		switch(uart_data){
 
-			case "z": //sẽ hiển thị "C3" trên màn hình LCD và phát ra note tương ứng là note đô
+		case 'Z': //sáº½ hiá»ƒn thá»‹ "C3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note Ä‘Ã´
 
 				note_index=0;
 				TH0=note_table[note_index];
@@ -113,7 +112,7 @@ void main()
 				uart_data='o';
 				break;
 			
-			case "x" : // hiển thị "C#3" trên màn hình LCD và phát ra note tương ứng là note rê
+			case 'X' : // hiá»ƒn thá»‹ "C#3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note rÃª
 		
 				note_index=2;
 				TH0=note_table[note_index];
@@ -127,7 +126,7 @@ void main()
 				LCD_Write_String("C#3");uart_data='o';
 				break;
 
-			case "c": // hiển thị "D3" trên màn hình LCD và phát ra note tương ứng là note mi
+			case 'C': // hiá»ƒn thá»‹ "D3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note mi
 			
 				note_index=4;
 				TH0=note_table[note_index];
@@ -141,7 +140,7 @@ void main()
 				LCD_Write_String("D3");uart_data='o';
 				break;
 
-			case "v": //hiển thị "D#3" trên màn hình LCD và phát ra note tương ứng là note fa
+			case 'V': //hiá»ƒn thá»‹ "D#3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note fa
 
 				note_index=6;
 				TH0=note_table[note_index];
@@ -155,7 +154,7 @@ void main()
 				LCD_Write_String("D#3");	uart_data='o';
 				break;
 
-			case "b": // hiển thị "E3" trên màn hình LCD và phát ra note tương ứng là note sol
+			case 'B': // hiá»ƒn thá»‹ "E3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note sol
 
 				note_index=8;
 				TH0=note_table[note_index];
@@ -169,7 +168,7 @@ void main()
 				LCD_Write_String("E3");  uart_data='o';
 				break;
 
-			case "n": //hiển thị "F3" trên màn hình LCD và phát ra note tương ứng là note la
+			case 'N': //hiá»ƒn thá»‹ "F3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note la
 
 				note_index=10;
 				TH0=note_table[note_index];
@@ -183,7 +182,7 @@ void main()
 				LCD_Write_String("F3");	uart_data='o';
 				break;
 
-			case "m": //hiển thị "F#3" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'M': //hiá»ƒn thá»‹ "F#3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=12;
 				TH0=note_table[note_index];
@@ -197,7 +196,7 @@ void main()
 				LCD_Write_String("F#3");	uart_data='o';
 				break;
  
-			case "a": //hiển thị "G3" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'A': //hiá»ƒn thá»‹ "G3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=14;
 				TH0=note_table[note_index];
@@ -211,7 +210,7 @@ void main()
 				LCD_Write_String("G3");	uart_data='o';
 				break;
 			
-			case "s": // hiển thị "G#3" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'S': // hiá»ƒn thá»‹ "G#3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=16;
 				TH0=note_table[note_index];
@@ -225,7 +224,7 @@ void main()
 				LCD_Write_String("G#3");	uart_data='o';
 				break;
 			
-			case "d": // hiển thị "A3" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'D': // hiá»ƒn thá»‹ "A3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=18;
 				TH0=note_table[note_index];
@@ -239,7 +238,7 @@ void main()
 				LCD_Write_String("A3");	uart_data='o';
 				break;
 			
-			case "f": // hiển thị "A#3" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'F': // hiá»ƒn thá»‹ "A#3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=20;
 				TH0=note_table[note_index];
@@ -253,7 +252,7 @@ void main()
 				LCD_Write_String("A#3");	uart_data='o';
 				break;
 			
-			case "g": // hiển thị "B3" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'G': // hiá»ƒn thá»‹ "B3" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=22;
 				TH0=note_table[note_index];
@@ -267,7 +266,7 @@ void main()
 				LCD_Write_String("B3");	uart_data='o';
 				break;
 			
-			case "h": //hiển thị "C4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'H': //hiá»ƒn thá»‹ "C4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=24;
 				TH0=note_table[note_index];
@@ -281,7 +280,7 @@ void main()
 				LCD_Write_String("C4");	uart_data='o';
 				break;
 			
-			case "j": //hiển thị "C#4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'J': //hiá»ƒn thá»‹ "C#4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=26;
 				TH0=note_table[note_index];
@@ -295,7 +294,7 @@ void main()
 				LCD_Write_String("C#4");	uart_data='o';
 				break;
 			
-			case "k": //hiển thị "D4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'K': //hiá»ƒn thá»‹ "D4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=28;
 				TH0=note_table[note_index];
@@ -309,7 +308,7 @@ void main()
 				LCD_Write_String("D4");	uart_data='o';
 				break;
 			
-			case "l": //hiển thị "D#4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'L': //hiá»ƒn thá»‹ "D#4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=30;
 				TH0=note_table[note_index];
@@ -323,7 +322,7 @@ void main()
 				LCD_Write_String("D#4");	uart_data='o';
 				break;
 			
-			case "q": //hiển thị "E4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'Q': //hiá»ƒn thá»‹ "E4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=32;
 				TH0=note_table[note_index];
@@ -337,7 +336,7 @@ void main()
 				LCD_Write_String("E4");	uart_data='o';
 				break;
 			
-			case "w": //hiển thị "F4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'W': //hiá»ƒn thá»‹ "F4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=34;
 				TH0=note_table[note_index];
@@ -351,7 +350,7 @@ void main()
 				LCD_Write_String("F4");	uart_data='o';
 				break;
 			
-			case "e": // hiển thị "F#4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'E': // hiá»ƒn thá»‹ "F#4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=36;
 				TH0=note_table[note_index];
@@ -365,7 +364,7 @@ void main()
 				LCD_Write_String("F#4");	uart_data='o';
 				break;
 			
-			case "r": // hiển thị "G4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'R': // hiá»ƒn thá»‹ "G4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=38;
 				TH0=note_table[note_index];
@@ -379,7 +378,7 @@ void main()
 				LCD_Write_String("G4");	uart_data='o';
 				break;
 			
-			case "t": //hiển thị "G#4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'T': //hiá»ƒn thá»‹ "G#4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=40;
 				TH0=note_table[note_index];
@@ -393,7 +392,7 @@ void main()
 				LCD_Write_String("G#4");	uart_data='o';
 				break;
 			
-			case "y": //hiển thị "A4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'Y': //hiá»ƒn thá»‹ "A4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=42;
 				TH0=note_table[note_index];
@@ -407,7 +406,7 @@ void main()
 				LCD_Write_String("A4");	uart_data='o';
 				break;
 			
-			case "u": //hiển thị "A#4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'U': //hiá»ƒn thá»‹ "A#4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=44;
 				TH0=note_table[note_index];
@@ -421,7 +420,7 @@ void main()
 				LCD_Write_String("A#4");	uart_data='o';
 				break;
 			
-			case "i": //hiển thị "B4" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'I': //hiá»ƒn thá»‹ "B4" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=46;
 				TH0=note_table[note_index];
@@ -435,7 +434,7 @@ void main()
 				LCD_Write_String("B4");	uart_data='o';
 				break;
 			
-			case "o": //hiển thị "C5" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'O': //hiá»ƒn thá»‹ "C5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=48;
 				TH0=note_table[note_index];
@@ -448,20 +447,20 @@ void main()
 				LCD_init();
 				LCD_Write_String("C5");	uart_data='o';
 				break;
-			case "p": //hiển thị "C#5" trên màn hình LCD và phát ra note tương ứng là note si
+			case 'P': //hiá»ƒn thá»‹ "C#5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=50;
 				TH0=note_table[note_index];
 				TL0=note_table[note_index+1];			
 				TR0=1;
-				delay(50000);
+				delay(500000);
 				TR0=0;
 				SPK=1;
 				//delay(30000);
 				LCD_init();
 				LCD_Write_String("C#5");	uart_data='o';
 				break;
-			case "1": //hiển thị "D5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '1': //hiá»ƒn thá»‹ "D5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=52;
 				TH0=note_table[note_index];
@@ -474,7 +473,7 @@ void main()
 				LCD_init();
 				LCD_Write_String("D5");	uart_data='o';
 				break;
-			case "2": //hiển thị "D#5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '2': //hiá»ƒn thá»‹ "D#5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=54;
 				TH0=note_table[note_index];
@@ -487,7 +486,7 @@ void main()
 				LCD_init();
 				LCD_Write_String("D#5");	uart_data='o';
 				break;
-			case "3": //hiển thị "E5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '3': //hiá»ƒn thá»‹ "E5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=56;
 				TH0=note_table[note_index];
@@ -500,7 +499,7 @@ void main()
 				LCD_init();
 				LCD_Write_String("E5");	uart_data='o';
 				break;
-			case "4": //hiển thị "F5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '4': //hiá»ƒn thá»‹ "F5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=58;
 				TH0=note_table[note_index];
@@ -513,7 +512,7 @@ void main()
 				LCD_init();
 				LCD_Write_String("F5");	uart_data='o';
 				break;
-			case "5": //hiển thị "F#5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '5': //hiá»ƒn thá»‹ "F#5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=60;
 				TH0=note_table[note_index];
@@ -526,7 +525,7 @@ void main()
 				LCD_init();
 				LCD_Write_String("F#5");	uart_data='o';
 				break;
-			case "6": //hiển thị "G5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '6': //hiá»ƒn thá»‹ "G5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=62;
 				TH0=note_table[note_index];
@@ -539,7 +538,7 @@ void main()
 				LCD_init();
 				LCD_Write_String("G5");	uart_data='o';
 				break;
-			case "7": //hiển thị "G#5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '7': //hiá»ƒn thá»‹ "G#5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=64;
 				TH0=note_table[note_index];
@@ -552,7 +551,7 @@ void main()
 				LCD_init();
 				LCD_Write_String("G#5");	uart_data='o';
 				break;
-			case "8": // hiển thị "A5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '8': // hiá»ƒn thá»‹ "A5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=66;
 				TH0=note_table[note_index];
@@ -565,38 +564,42 @@ void main()
 				LCD_init();
 				LCD_Write_String("A5");	uart_data='o';
 				break;
-			case "9": //sẽ hiển thị "A#5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '9': //sáº½ hiá»ƒn thá»‹ "A#5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=68;
 				TH0=note_table[note_index];
 				TL0=note_table[note_index+1];			
 				TR0=1;
-				delay(50000);
+				delay(500000);
 				TR0=0;
 				SPK=1;
 				//delay(30000);
 				LCD_init();
 				LCD_Write_String("A#5");	uart_data='o';
 				break;
-			case "0": //hiển thị "B5" trên màn hình LCD và phát ra note tương ứng là note si
+			case '0': //hiá»ƒn thá»‹ "B5" trÃªn mÃ n hÃ¬nh LCD vÃ  phÃ¡t ra note tÆ°Æ¡ng á»©ng lÃ  note si
 
 				note_index=70;
 				TH0=note_table[note_index];
 				TL0=note_table[note_index+1];			
 				TR0=1;
-				delay(50000);
+				delay(5000000000);
+				int k = 500000000000;
+				while(k)
+				{
+					k--;
+					TR0=1;
+				}
 				TR0=0;
 				SPK=1;
-				//delay(30000);
+				//delay(300000000);
 				LCD_init();
 				LCD_Write_String("B5");	uart_data='o';
 				break;
-			
 			default:
-				LCD_init(); 
+				LCD_init();
+				LCD_Write_One_Char(uart_data);
 				break;		
-			
-			
 		}		
 	} 
 }
@@ -663,7 +666,7 @@ void LCD_Write_String(unsigned char *s)
 	}
 }
 
-void serial_IT(void) interrupt 4 //hàm xử lý ngắt serial port khi truyền/ nhận xong một ký tự
+void serial_IT(void) interrupt 4 //hÃ m xá»­ lÃ½ ngáº¯t serial port khi truyá»n/ nháº­n xong má»™t kÃ½ tá»±
 {
   if (RI == 1)
   { 
@@ -675,7 +678,7 @@ void serial_IT(void) interrupt 4 //hàm xử lý ngắt serial port khi truyền
     TI = 0; 		
 }
 
-void timer0() interrupt 1 //hàm xử lý ngắt tràn timer0
+void timer0() interrupt 1 //hÃ m xá»­ lÃ½ ngáº¯t trÃ n timer0
 {
 	TH0=note_table[note_index];
 	TL0=note_table[note_index+1];
@@ -694,4 +697,3 @@ void delay(unsigned int time)
 {
 	while(time--);
 }	
-

@@ -31,9 +31,10 @@ namespace EPianoW8085
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.hdApp = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -43,9 +44,10 @@ namespace EPianoW8085
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Location = new System.Drawing.Point(2, 72);
             this.panel1.Name = "panel1";
@@ -56,52 +58,70 @@ namespace EPianoW8085
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(557, 47);
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label5.Font = new System.Drawing.Font("Segoe UI Black", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label5.ForeColor = System.Drawing.Color.DarkGreen;
+            this.label5.Location = new System.Drawing.Point(109, 36);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 15);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "label5";
+            this.label5.Size = new System.Drawing.Size(1085, 30);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "  #NOTICE:#  Sử dụng bàn phím máy tính tương ứng phím đàn theo chỉ dẫn trên màn h" +
+    "ình để chơi nhạc!  ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label2.Location = new System.Drawing.Point(842, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(418, 25);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "- Nguyễn Duy Khai    x    - Đặng Quang Thắng";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(210)))), ((int)(((byte)(230)))));
+            this.label3.Location = new System.Drawing.Point(761, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 25);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "DEV:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.label6.Location = new System.Drawing.Point(383, 3);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(174, 25);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "- Baud Rate:  9600";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.label4.Location = new System.Drawing.Point(121, 15);
+            this.label4.Location = new System.Drawing.Point(194, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 25);
+            this.label4.Size = new System.Drawing.Size(160, 25);
             this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(210)))), ((int)(((byte)(230)))));
-            this.label3.Location = new System.Drawing.Point(377, 15);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 15);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(484, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.label4.Text = "- Port:  <COM5>";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(210)))), ((int)(((byte)(230)))));
-            this.label1.Location = new System.Drawing.Point(10, 15);
+            this.label1.Location = new System.Drawing.Point(38, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 25);
+            this.label1.Size = new System.Drawing.Size(141, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "CONNECTION:";
             // 
             // hdApp
             // 
@@ -122,7 +142,7 @@ namespace EPianoW8085
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.ClientSize = new System.Drawing.Size(1284, 300);
+            this.ClientSize = new System.Drawing.Size(1284, 328);
             this.Controls.Add(this.hdApp);
             this.Controls.Add(this.panel1);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
@@ -142,11 +162,14 @@ namespace EPianoW8085
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label hdApp;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox sBR;
+        private System.Windows.Forms.ComboBox sCOM;
+        private System.Windows.Forms.Label label5;
     }
 }
 
